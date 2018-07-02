@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import numpy as np
 import rospy
 from geometry_msgs.msg import PoseStamped
@@ -61,14 +60,14 @@ class WaypointUpdater(object):
     def get_closest_waypoint_idx(self):
         x = self.pose.pose.position.x
         y = self.pose.pose.position.y
-        closest_idx = self.waypoint_tree.query([x,y], 1)[1]
+        closest_idx = self.waypoint_tree.querry([x,y], 1)[1]
 
         # check if closest is ahead or behind the vehicle
         closest_coord = self.waypoints_2d[closest_idx]
         prev_coord = self.waypoints_2d[closest_idx - 1]
 
-        # equation for hyperplane through closest_coord
-        cl_vect = np.array(closest_coord)
+        # equation for hyperplane through closest_coords
+        cl_vect = np.array(closest_coords)
         prev_vect = np.array(prev_coord)
         pos_vect = np.array([x,y])
 
